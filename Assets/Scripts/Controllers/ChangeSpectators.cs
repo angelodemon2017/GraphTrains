@@ -20,17 +20,17 @@ public class ChangeSpectators : SingletonMonoBeh<ChangeSpectators>
 
     private void ChangedEdge(GraphEdge edge)
     {
-        CalcingProfitPaths.ChangedEdge();
+        ProfitPaths.ChangedEdge();
     }
 
     private void ChangeNode(GraphNode node)
     {
-        CalcingProfitPaths.UpdateNodes();
+        ProfitPaths.UpdateNodes();
     }
 
     private void ChangedTrain(Train train)
     {
-        CalcingProfitPaths.ChangedFSM(train);
+        ProfitPaths.ChangedFSM(train);
     }
 
     private void OnDestroy()

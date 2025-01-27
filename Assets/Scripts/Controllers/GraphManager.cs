@@ -18,7 +18,7 @@ public class GraphManager : SingletonMonoBeh<GraphManager>
 
     internal IEnumerable<T> GetNodes<T>() where T : GraphNode
     {
-        return _cashNodes.Where(n => n is T).Select(n => (T)n);
+        return _cashNodes.OfType<T>();
     }
 
     private void Awake()

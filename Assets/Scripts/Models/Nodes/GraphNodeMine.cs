@@ -6,6 +6,11 @@ public class GraphNodeMine : GraphNode
 
     internal override void UseNode(IFSM fsm)
     {
-        fsm.Mining(_amountMine);
+        fsm.Using(_amountMine);
+    }
+
+    internal override float GetWeight(IFSM fsm)
+    {
+        return 1f / (GetTotalUsingTime(fsm as IMiningable) + GetTimeMoveToNode(fsm));
     }
 }

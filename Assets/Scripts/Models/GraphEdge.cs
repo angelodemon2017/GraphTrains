@@ -33,7 +33,7 @@ public class GraphEdge : MonoBehaviour
         }
     }
 
-    private void DrawGizmos()
+    internal void DrawGizmos()
     {
         GizmoNode(NodeA);
         GizmoNode(NodeB);
@@ -72,6 +72,6 @@ public class GraphEdge : MonoBehaviour
 
     internal float GetTotalSpeed(IMovable movable)
     {
-        return movable.GetMoveSpeed / Weight;
+        return movable.GetBaseMoveSpeed / Weight;
     }
 }

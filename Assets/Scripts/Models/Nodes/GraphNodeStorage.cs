@@ -23,4 +23,9 @@ public class GraphNodeStorage : GraphNode
             OnChanged?.Invoke(this);
         }
     }
+
+    internal override float GetWeight(IFSM fsm)
+    {
+        return Multiplicator / GetTimeMoveToNode(fsm);
+    }
 }

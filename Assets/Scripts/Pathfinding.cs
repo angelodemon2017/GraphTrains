@@ -3,16 +3,29 @@ using System.Linq;
 
 public class Pathfinding
 {
-    private static Dictionary<(GraphNode, GraphNode), List<GraphNode>> _cashPaths = new();
+    private static Dictionary<(GraphNode, GraphNode), (List<GraphNode>,float)> _cashPaths = new();
 
-    internal static List<GraphNode> GetPath(GraphNode node1, GraphNode node2)
+    private static void CalcPaths(GraphNode node1, GraphNode node2)
     {
         if (!_cashPaths.ContainsKey((node1, node2)))
         {
-            _cashPaths.Add((node1, node2), FindShortestPath(node1, node2));
+            var tempPath = FindShortestPath(node1, node2);
+            _cashPaths.Add((node1, node2), (FindShortestPath(node1, node2), tempPath.GetLength()));
         }
+    }
 
-        return _cashPaths[(node1, node2)];
+    internal static float GetWeigh(GraphNode node1, GraphNode node2)
+    {
+        CalcPaths(node1, node2);
+
+        return _cashPaths[(node1, node2)].Item2;
+    }
+
+    internal static List<GraphNode> GetPath(GraphNode node1, GraphNode node2)
+    {
+        CalcPaths(node1, node2);
+
+        return _cashPaths[(node1, node2)].Item1;
     }
 
     internal static void UpdatePaths()

@@ -1,11 +1,12 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public interface IFSM
 {
     bool HaveResources { get; }
 
-    void Mining(int amount);
+    string KeyCurrentState { get; }
+
+    void Using(int amount);
 
     int GetResources();
 

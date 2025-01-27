@@ -57,4 +57,14 @@ public class GraphNode : MonoBehaviour
     {
         return _usingTimeMulti * miningable.GetMiningSpeed;
     }
+
+    protected float GetTimeMoveToNode(IFSM fsm)
+    {
+        return Pathfinding.GetWeigh(fsm.GetCurrentNode, this) / (fsm as IMovable).GetBaseMoveSpeed;
+    }
+
+    internal virtual float GetWeight(IFSM fsm)
+    {
+        return 0;
+    }
 }

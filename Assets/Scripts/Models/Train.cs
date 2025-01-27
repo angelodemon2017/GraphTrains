@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Train : MonoBehaviour, IFSM, IMiningable, IMovable
@@ -14,13 +15,25 @@ public class Train : MonoBehaviour, IFSM, IMiningable, IMovable
     private int _resource;
 
     public float GetMiningSpeed => _speedMine;
-    public float GetMoveSpeed => _speedMove;
+    public float GetBaseMoveSpeed => _speedMove;
     public GraphNode GetCurrentNode => _currentNode;
 
     public Transform GetTransform => transform;
     public bool HaveResources => _resource > 0;
 
+    public string KeyCurrentState => _currentState.StateKey;
+
     internal Action<Train> OnChanged;
+
+    private void OnDrawGizmosSelected()
+    {
+        if (_currentState is StateGoToNode sgtn)
+        {
+            List<GraphNode> tempNodes = new(sgtn.CurrentPath);
+            tempNodes.Insert(0, _currentNode);
+            tempNodes.GetEdges().ForEach(e => e.DrawGizmos());
+        }
+    }
 
     private void Awake()
     {
@@ -79,7 +92,7 @@ public class Train : MonoBehaviour, IFSM, IMiningable, IMovable
         _currentNode = node;
     }
 
-    public void Mining(int amount)
+    public void Using(int amount)
     {
         _resource += amount;
     }
@@ -97,5 +110,16 @@ public class Train : MonoBehaviour, IFSM, IMiningable, IMovable
         {
             ChangeSpectators.Instance.SpectatorOffTrain(this);
         }
+    }
+
+    public bool Move(Vector3 target, float speed)
+    {
+        if (Vector3.Distance(transform.position, target) > 0.1f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            return false;
+        }
+
+        return true;
     }
 }

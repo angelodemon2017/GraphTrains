@@ -7,6 +7,11 @@ public abstract class State : ScriptableObject
 
     [SerializeField] protected List<State> AvailableStates;
 
+    internal virtual List<GraphNode> GetPotencialNodes()
+    {
+        return new List<GraphNode>();
+    }
+
     protected IFSM _fsm;
 
     public bool IsFinished { get; protected set; }

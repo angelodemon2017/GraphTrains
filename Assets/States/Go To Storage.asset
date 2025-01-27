@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8621e5b465f2f514daebc9f8503a5a32, type: 3}
-  m_Name: State Using Node
+  m_Script: {fileID: 11500000, guid: f8cbc09bc4ae29040ab146beddb0b6f0, type: 3}
+  m_Name: Go To Storage
   m_EditorClassIdentifier: 
   AvailableStates:
-  - {fileID: 11400000, guid: 9dc79c0e271f727478a703a7590a29e8, type: 2}
+  - {fileID: 11400000, guid: fadeaa8807923e840bbcd5c4ea057636, type: 2}
+  _stateThinking: {fileID: 11400000, guid: 9dc79c0e271f727478a703a7590a29e8, type: 2}

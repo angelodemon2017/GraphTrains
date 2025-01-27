@@ -9,20 +9,23 @@ public static class CollectionExtensions
         return collect.ElementAt(Random.Range(0, collect.Count()));
     }
 
+    public static List<GraphEdge> GetEdges(this List<GraphNode> nodes)
+    {
+        List<GraphEdge> edges = new List<GraphEdge>();
+
+        if (nodes.Count > 1)
+        {
+            for (int i = 0; i < nodes.Count - 1; i++)
+            {
+                edges.Add(nodes[i].GetEdgeByNode(nodes[i + 1]));
+            }
+        }
+
+        return edges;
+    }
+
     public static float GetLength(this List<GraphNode> nodes)
     {
-        if (nodes.Count < 2)
-        {
-            return 0;
-        }
-
-        float result = 0f;
-
-        for (int i = 0; i < nodes.Count - 1; i++)
-        {
-            result += nodes[i].GetEdgeByNode(nodes[i + 1]).Weight;
-        }
-
-        return result;
+        return nodes.GetEdges().Sum(e => e.Weight);
     }
 }
