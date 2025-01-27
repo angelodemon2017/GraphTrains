@@ -157,7 +157,7 @@ MonoBehaviour:
   _debugLabelsOn: 1
   _nodeLabelOn: 1
   _highNodeLabel: 2
-  _edgeLabelOn: 0
+  _edgeLabelOn: 1
   _parentNodes: {fileID: 934155827}
 --- !u!4 &44018542
 Transform:

@@ -17,7 +17,7 @@ abstract class StateGoToNode : State
         var tempNode = ProfitPaths.GetPreferNode(_fsm, this);
         _path.AddRange(Pathfinding.GetPath(_fsm.GetCurrentNode, tempNode));
 
-        CheckNode();
+        UpdateTargets();
 
         GraphEdge.OnChanged += ChangedEdge;
         GraphNode.OnChanged += ChangedNode;
@@ -46,14 +46,19 @@ abstract class StateGoToNode : State
         _path.RemoveAt(0);
         if (_path.Count > 0)
         {
-            _targetNode = _path[0];
-            _graphEdge = _fsm.GetCurrentNode.GetEdgeByNode(_targetNode);
-            UpdateMoveSpeed();
+            UpdateTargets();
         }
         else
         {
             IsFinished = true;
         }
+    }
+
+    private void UpdateTargets()
+    {
+        _targetNode = _path[0];
+        _graphEdge = _fsm.GetCurrentNode.GetEdgeByNode(_targetNode);
+        UpdateMoveSpeed();
     }
 
     private void UpdateMoveSpeed()
