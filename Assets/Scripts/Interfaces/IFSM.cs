@@ -4,8 +4,6 @@ public interface IFSM
 {
     bool HaveResources { get; }
 
-    string KeyCurrentState { get; }
-
     void Using(int amount);
 
     int GetResources();

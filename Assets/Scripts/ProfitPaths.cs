@@ -34,7 +34,7 @@ class ProfitPaths
             _cashProfitNode[unit].Add((state.StateKey, unit.GetCurrentNode), preferNode);
         }
 
-        return _cashProfitNode[unit][(unit.KeyCurrentState, unit.GetCurrentNode)];
+        return _cashProfitNode[unit][(state.StateKey, unit.GetCurrentNode)];
     }
 
     internal static void ChangedEdge()

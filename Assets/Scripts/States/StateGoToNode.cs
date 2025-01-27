@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "States/Go to node State", order = 1)]
 abstract class StateGoToNode : State
 {
     [SerializeField] private State _stateThinking;

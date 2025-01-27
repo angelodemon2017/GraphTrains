@@ -21,8 +21,6 @@ public class Train : MonoBehaviour, IFSM, IMiningable, IMovable
     public Transform GetTransform => transform;
     public bool HaveResources => _resource > 0;
 
-    public string KeyCurrentState => _currentState.StateKey;
-
     internal Action<Train> OnChanged;
 
     private void OnDrawGizmosSelected()
